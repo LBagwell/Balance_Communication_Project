@@ -15,3 +15,9 @@ Part 1: Levi - Establish communication with balance.
 
 ```
 Resources Consulted: 
+
+Part 3: Emily - Design code to insert readings into certain parts of a .csv file.
+```{r}
+
+```
+Resources Consulted:
