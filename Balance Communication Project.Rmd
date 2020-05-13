@@ -19,17 +19,18 @@ def conscale():
 		baudrate=9600,
 		parity='N',
 		stopbits=serial.STOPBITS_ONE,
-		bytesize=seril.SEVENBITS,
+		bytesize=serial.SEVENBITS,
 		timeout=None);
 	x=ser.readline()
 	return x
-	
+
+The code above was designed to communicate and take readings from the balance. During the development and trouble shooting of the code we decided that it would be much easier to interface through a raspberry pi and so that is what we used to design the code. The first part of this project was determining the port that the raspberry pi was using to communicate through the balance. It was determined that the port was '/dev/ttyUSB0',. After determining port I was able to call the port and look at all of communication pieces that the balance was sending to the raspberry pi. These pieces include baudrate, parity, stopbits, bytesize, timeout, and .......... After determining the communication pieces I had to mirror those pieces with my code to get proper communication with the balance. After the communication pieces had been added to the code I used print x to determine that i had established a way to get the data from the balance. This code printed every single mass reading into the python block. 
+
 Resources Consulted: 
 - Balance Communication (instructables.com)
 - Software Interfaces Sartorius Balances to PC(windmill.co.uk)
 - Balance Communication Software WinCT (Balances.com)
-
-Notes: I was not succesful at getting the code to interface with the balance. I was able to find the serial port and get an error code back that said "device reports readiness to read but returned no data". I believe I was extremly close to getting this code to work with some more troublshooting with the code and the settings on the balance but unfortunatly ran out of time. 
+ 
 
 Part 2: Gus - Design code to take readings at certain time intervals
 #For the function i am contributing to, i am looking into possible software that will allow the scale to take readings at certain time intervals. I have been specifically looking into RsWeight programs to help with the issue. In the program, one can set many perameters and take readings at specific intervals. There is options in this program to export to an Excell file and have the data arranged respectively. Need to see what components are required for the specific program and if its a possibility.
