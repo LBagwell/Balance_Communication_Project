@@ -18,13 +18,16 @@ def conscale():
 		port='/dev/ttyUSB0',
 		baudrate=9600,
 		parity='N',
-		stopbits=serial.STOPBITS_ONE,
+		stopbits=1,
 		bytesize=serial.SEVENBITS,
-		timeout=None);
+		timeout=None,
+		xonxoff=True,
+		rtscts=False,
+		dsrdtr=False);
 	x=ser.readline()
 	return x
 
-The code above was designed to communicate and take readings from the balance. During the development and trouble shooting of the code we decided that it would be much easier to interface through a raspberry pi and so that is what we used to design the code. The first part of this project was determining the port that the raspberry pi was using to communicate through the balance. It was determined that the port was '/dev/ttyUSB0',. After determining port I was able to call the port and look at all of communication pieces that the balance was sending to the raspberry pi. These pieces include baudrate, parity, stopbits, bytesize, timeout, and .......... After determining the communication pieces I had to mirror those pieces with my code to get proper communication with the balance. After the communication pieces had been added to the code I used print x to determine that i had established a way to get the data from the balance. This code printed every single mass reading into the python block. 
+The code above was designed to communicate and take readings from the balance. During the development and trouble shooting of the code we decided that it would be much easier to interface through a raspberry pi and so that is what we used to design the code. The first part of this project was determining the port that the raspberry pi was using to communicate through the balance. It was determined that the port was '/dev/ttyUSB0',. After determining port I was able to call the port and look at all of communication pieces that the balance was sending to the raspberry pi. These pieces include baudrate, parity, stopbits, bytesize, timeout, XONXOFF which is the handshake between the pi and the scale, this has to be "true" for the scale to send the data it is reading to the pi. After determining the communication pieces I had to mirror those pieces with my code in the ser=serial.Serial port creation to get proper communication with the balance. After the communication pieces had been added to the code I used While 1 print x to determine that i had established a way to get the data from the balance. This code printed every single mass reading into the python block. The ser.readline() function will then read the lines from the ser port created above. Then that value is returned so that it can be called using the conscale function
 
 Resources Consulted: 
 - Balance Communication (instructables.com)
@@ -82,7 +85,7 @@ CSV file management: https://www.geeksforgeeks.org/csv-file-management-using-c/
 What is a CSV File and How to open the CSV File Format: https://www.freecodecamp.org/news/what-is-a-csv-file-and-how-to-open-the-csv-file-format/
 
 
-THE CODE AS OF 05/4/20 @11:30 AM
+THE FINAL CODE
 
 import time
 import serial
@@ -93,10 +96,12 @@ def conscale():
 		port='/dev/ttyUSB0',
 		baudrate = 9600,
 		parity=serial.PARITY_EVEN,
-		stopbits=serial.STOPBITS_ONE,
+		stopbits=1,
 		bytesize=serial.SEVENBITS,
-		timeout=None);
-		
+		timeout=None,
+		xonxoff=True,
+		rtscts=False,
+		dsrdtr=False);	
 	x=ser.readline()
 	return x
 	
