@@ -79,7 +79,19 @@ with open('output.csv', 'w') as csvfile:
     csvwriter = csv.writer(csvfile)
     for row in result.items():
         csvwriter.writerow(row)
-        
+	
+A few final edits:
+After the code that communicated with the balance was created and successfully ran and after the code for taking readings at certain times was created and successfully ran a code was written for placing the data in a csv file. Below is the final edited code that was created and successfully ran. 
+Levi and Gus's code is included in the final code below so that the code successfully runs and places the readings in the csv file. 
+
+def readmass():
+	t_end = time.time() + 15;
+	with open('mass.csv', 'w', newline='') as f:
+		csvwriter = csv.writer(f, delimiter = ',',quotechar='|', quoting=csv.QUOTE_MINIMAL )
+		while time.time() < t_end:
+			csvwriter.writerow([conscale()])
+			time.sleep(3)
+
 Resources Consulted:
 CSV file management: https://www.geeksforgeeks.org/csv-file-management-using-c/
 What is a CSV File and How to open the CSV File Format: https://www.freecodecamp.org/news/what-is-a-csv-file-and-how-to-open-the-csv-file-format/
